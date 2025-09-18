@@ -54,8 +54,8 @@ COPY . /var/www/html
 # Copier config PHP-FPM custom
 COPY docker/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 # Droits
-RUN chown -R www-data:www-data /var/www/html/var
-
+RUN mkdir -p /var/www/html/var \
+    && chown -R www-data:www-data /var/www/html/var
 # Exposer PHP-FPM
 EXPOSE 8080
 
