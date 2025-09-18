@@ -50,12 +50,14 @@ WORKDIR /var/www/html
 # Copier le code Symfony
 COPY . /var/www/html
 
+
+# Copier config PHP-FPM custom
+COPY docker/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 # Droits
 RUN chown -R www-data:www-data /var/www/html/var
 
 # Exposer PHP-FPM
 EXPOSE 8080
-# Copier config PHP-FPM custom
-COPY docker/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+
 # Commande de démarrage
 CMD ["php-fpm8.2", "-F","-y","/usr/local/etc/php-fpm.d/zz-docker.conf"]
