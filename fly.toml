@@ -1,12 +1,24 @@
-# fly.toml app configuration file generated for backend-silent-tree-1339 on 2025-09-18T20:52:19+02:00
+# fly.toml app configuration file generated for backend-api-deployment on 2025-09-18T20:56:58+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'backend-silent-tree-1339'
+app = 'backend-api-deployment'
 primary_region = 'cdg'
+console_command = 'php /var/www/html/artisan tinker'
 
 [build]
+  [build.args]
+    NODE_VERSION = '18'
+    PHP_VERSION = '8.1'
+
+[env]
+  APP_ENV = 'production'
+  LOG_CHANNEL = 'stderr'
+  LOG_LEVEL = 'info'
+  LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+  SESSION_DRIVER = 'cookie'
+  SESSION_SECURE_COOKIE = 'true'
 
 [http_service]
   internal_port = 8080
